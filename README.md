@@ -29,7 +29,7 @@ func main() {
 	fmt.Println(g.CreateVertexesPair())
 	fmt.Println(g.CreateEdge())
 
-	graph.DoGraph(g)
+	graph.ShowGraph(g)
 }
 ```
 
