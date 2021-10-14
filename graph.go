@@ -60,7 +60,7 @@ func (g *Glink) PrintGraph() {
 	}
 }
 
-func DoGraph(g Graph) {
+func ShowGraph(g Graph) {
 	_ = g.CreateVertexesPair()
 	_ = g.CreateEdge()
 	g.PrintGraph()
