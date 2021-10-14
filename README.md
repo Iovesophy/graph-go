@@ -1,6 +1,6 @@
 # graph-go
 
-## sample code
+## sample
 
 ```Go
 package main
