@@ -1,5 +1,7 @@
 # graph-go
 
+[![test](https://github.com/Iovesophy/graph-go/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/Iovesophy/graph-go/actions/workflows/test.yml) [![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/Iovesophy/graph-go/master/LICENSE)
+
 ## sample
 
 ```Go
