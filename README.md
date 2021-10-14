@@ -33,6 +33,8 @@ func main() {
 }
 ```
 
+https://play.golang.org/p/s0srXwaGh6M
+
 ## License
 Copyright (c) 2021 Kazuya yuda.
 This software is released under the MIT License, see LICENSE.
