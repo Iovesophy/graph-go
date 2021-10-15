@@ -9,29 +9,29 @@ package main
 
 import (
 	"fmt"
-	graph "github.com/Iovesophy/graph-go"
+	"github.com/Iovesophy/graph-go"
 )
 
 func main() {
 	samplePlace := []graph.Node{
-		graph.Node{ID: 1, Element: "place-A"},
-		graph.Node{ID: 2, Element: "place-B"},
-		graph.Node{ID: 3, Element: "place-C"},
-		graph.Node{ID: 4, Element: "place-D"},
+		{ID: 1, Element: "place-A"},
+		{ID: 2, Element: "place-B"},
+		{ID: 3, Element: "place-C"},
+		{ID: 4, Element: "place-D"},
 	}
 	sampleStation := []graph.Node{
-		graph.Node{ID: 5, Element: "station-A"},
-		graph.Node{ID: 6, Element: "station-B"},
+		{ID: 5, Element: "station-A"},
+		{ID: 6, Element: "station-B"},
 	}
-	g := &graph.Glink{
-		NodeData: samplePlace,
-		BaseData: sampleStation,
+	g := &graph.NewGraph{
+		NodeA: samplePlace,
+		NodeB: sampleStation,
 	}
 
-	fmt.Println(g.CreateVertexesPair())
-	fmt.Println(g.CreateEdge())
-
-	graph.ShowGraph(g)
+	val1 , _ := g.CreateUndirectedVertexesPair()
+	val2 , _ := g.CreateUndirectedEdge()
+	fmt.Println(val1,val2)
+	graph.ShowUndirectedGraph(g)
 }
 ```
 
@@ -41,6 +41,3 @@ https://play.golang.org/p/s0srXwaGh6M
 Copyright (c) 2021 Kazuya yuda.
 This software is released under the MIT License, see LICENSE.
 https://opensource.org/licenses/mit-license.php
-
-## Authors
-kazuya yuda.
