@@ -35,7 +35,7 @@ func main() {
 }
 ```
 
-https://play.golang.org/p/s0srXwaGh6M
+https://play.golang.org/p/XDfxWXtNN_m
 
 ## License
 Copyright (c) 2021 Kazuya yuda.
