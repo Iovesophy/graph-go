@@ -1,67 +1,85 @@
 package graph
 
-import "fmt"
-
-var (
-	_ Graph = (*Glink)(nil)
+import (
+	"errors"
+	"fmt"
+	"log"
 )
 
-type Graph interface {
-	CreateVertexesPair() []NodeSet
-	CreateEdge() []NodeSet
-	PrintGraph()
-}
-
-type Glink struct {
+type NewGraph struct {
 	NodeSets []NodeSet
-	NodeData []Node
-	BaseData []Node
+	NodeA    []Node
+	NodeB    []Node
 }
 
 type Node struct {
-	ID      int
-	Element string
+	ID      interface{}
+	Element interface{}
 }
 
 type NodeSet struct {
-	Vertex1 Node
-	Vertex2 Node
+	VertexA Node
+	VertexB Node
 }
 
-func (g *Glink) CreateVertexesPair() []NodeSet {
+// Check Interface
+var (
+	_ UndirectedGraph = (*NewGraph)(nil)
+)
+
+// UndirectedGraph
+type UndirectedGraph interface {
+	CreateUndirectedVertexesPair() ([]NodeSet, error)
+	CreateUndirectedEdge() ([]NodeSet, error)
+	PrintGraph()
+}
+
+func (g *NewGraph) CreateUndirectedVertexesPair() ([]NodeSet, error) {
 	nodeSetter := NodeSet{}
-	for i := range g.NodeData {
-		for j := i; j < len(g.NodeData); j++ {
-			if j != i {
-				nodeSetter.Vertex1 = g.NodeData[i]
-				nodeSetter.Vertex2 = g.NodeData[j]
+	if len(g.NodeA) > 1 {
+		for i := range g.NodeA {
+			for j := i; j < len(g.NodeA); j++ {
+				if j != i {
+					nodeSetter.VertexA = g.NodeA[i]
+					nodeSetter.VertexB = g.NodeA[j]
+					g.NodeSets = append(g.NodeSets, nodeSetter)
+				}
+			}
+		}
+	} else {
+		return nil, errors.New("CreateUndirectedVertexesPair: can not create pair")
+	}
+	return g.NodeSets, nil
+}
+
+func (g *NewGraph) CreateUndirectedEdge() ([]NodeSet, error) {
+	nodeSetter := NodeSet{}
+	if len(g.NodeA) > 1 && len(g.NodeB) > 1 {
+		for i := range g.NodeA {
+			for j := range g.NodeB {
+				nodeSetter.VertexA = g.NodeA[i]
+				nodeSetter.VertexB = g.NodeB[j]
 				g.NodeSets = append(g.NodeSets, nodeSetter)
 			}
 		}
+	} else {
+		return nil, errors.New("CreateUndirectedEdge: can not create edge")
 	}
-	return g.NodeSets
+	return g.NodeSets, nil
 }
 
-func (g *Glink) CreateEdge() []NodeSet {
-	nodeSetter := NodeSet{}
-	for i := range g.NodeData {
-		for j := range g.BaseData {
-			nodeSetter.Vertex1 = g.NodeData[i]
-			nodeSetter.Vertex2 = g.BaseData[j]
-			g.NodeSets = append(g.NodeSets, nodeSetter)
-		}
-	}
-	return g.NodeSets
-}
-
-func (g *Glink) PrintGraph() {
+func (g *NewGraph) PrintGraph() {
 	for i := range g.NodeSets {
 		fmt.Println(g.NodeSets[i])
 	}
 }
 
-func ShowGraph(g Graph) {
-	_ = g.CreateVertexesPair()
-	_ = g.CreateEdge()
+func ShowUndirectedGraph(g UndirectedGraph) {
+	if _, err := g.CreateUndirectedVertexesPair(); err != nil {
+		log.Fatal(err)
+	}
+	if _, err := g.CreateUndirectedEdge(); err != nil {
+		log.Fatal(err)
+	}
 	g.PrintGraph()
 }
