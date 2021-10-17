@@ -10,3 +10,10 @@ jobs:
       run: make docker-build
     - name: test
       run: make test 
+  codecov:
+    - name: test
+      run: go test -race -coverprofile="coverage.txt" -covermode=atomic ./...
+    - name: upload coverage
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
