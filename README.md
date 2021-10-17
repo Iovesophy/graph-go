@@ -1,6 +1,4 @@
-# graph-go  
-
-<img src="https://user-images.githubusercontent.com/15680172/137610607-39e4b8b0-a343-4b22-b37c-0183bbf86dc4.png" data-canonical-src="https://user-images.githubusercontent.com/15680172/137610607-39e4b8b0-a343-4b22-b37c-0183bbf86dc4.png" width="55" height="55" />
+# <img src="https://user-images.githubusercontent.com/15680172/137610607-39e4b8b0-a343-4b22-b37c-0183bbf86dc4.png" data-canonical-src="https://user-images.githubusercontent.com/15680172/137610607-39e4b8b0-a343-4b22-b37c-0183bbf86dc4.png" width="30" height="30" /> Graph-go
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/Iovesophy/graph-go.svg)](https://pkg.go.dev/github.com/Iovesophy/graph-go) [![test](https://github.com/Iovesophy/graph-go/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/Iovesophy/graph-go/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/Iovesophy/graph-go/branch/master/graph/badge.svg?token=LMRN408RMC)](https://codecov.io/gh/Iovesophy/graph-go) [![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/Iovesophy/graph-go/master/LICENSE)
 
