@@ -1,6 +1,6 @@
 # graph-go
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/Iovesophy/graph-go.svg)](https://pkg.go.dev/github.com/Iovesophy/graph-go) [![test](https://github.com/Iovesophy/graph-go/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/Iovesophy/graph-go/actions/workflows/test.yml) [![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/Iovesophy/graph-go/master/LICENSE)
+[![Go Reference](https://pkg.go.dev/badge/github.com/Iovesophy/graph-go.svg)](https://pkg.go.dev/github.com/Iovesophy/graph-go) [![test](https://github.com/Iovesophy/graph-go/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/Iovesophy/graph-go/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/Iovesophy/graph-go/branch/master/graph/badge.svg?token=LMRN408RMC)](https://codecov.io/gh/Iovesophy/graph-go) [![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/Iovesophy/graph-go/master/LICENSE)
 
 ## sample
 
