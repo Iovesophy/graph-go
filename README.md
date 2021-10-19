@@ -28,14 +28,19 @@ func main() {
 		NodeB: sampleStation,
 	}
 
-	val1 , _ := g.CreateUndirectedVertexesPair()
+	val1 , _ := g.CreateUndirectedNodePair()
 	val2 , _ := g.CreateUndirectedEdge()
-	fmt.Println(val1,val2)
-	graph.ShowUndirectedGraph(g)
+	val3 , _ := g.CreateDirectedNodePair()
+	val4 , _ := g.CreateDirectedEdge()
+	fmt.Println(val1,val2,val3,val4)
+
+	graph.ShowUndirectedGraphOfNodePair(g)
+	graph.ShowUndirectedGraphOfEdge(g)
+
+	graph.ShowDirectedGraphOfNodePair(g)
+	graph.ShowDirectedGraphOfEdge(g)
 }
 ```
-
-https://play.golang.org/p/XDfxWXtNN_m
 
 ## License
 Copyright (c) 2021 Kazuya yuda.
