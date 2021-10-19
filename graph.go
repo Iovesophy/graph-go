@@ -18,8 +18,8 @@ type Node struct {
 }
 
 type NodeSet struct {
-	VertexA Node
-	VertexB Node
+	NodeA Node
+	NodeB Node
 }
 
 // region Check Interface
@@ -44,24 +44,29 @@ func (g *NewGraph) PrintGraph() {
 // region UndirectedGraph
 type UndirectedGraph interface {
 	PrintGraph()
-	CreateUndirectedVertexesPair() ([]NodeSet, error)
+	CreateUndirectedNodePair() ([]NodeSet, error)
 	CreateUndirectedEdge() ([]NodeSet, error)
 }
 
-func (g *NewGraph) CreateUndirectedVertexesPair() ([]NodeSet, error) {
+func (g *NewGraph) CreateUndirectedNodePair() ([]NodeSet, error) {
 	nodeSetter := NodeSet{}
 	if len(g.NodeA) > 1 {
 		for i := range g.NodeA {
 			for j := i; j < len(g.NodeA); j++ {
 				if j != i {
-					nodeSetter.VertexA = g.NodeA[i]
-					nodeSetter.VertexB = g.NodeA[j]
+					// noraml
+					nodeSetter.NodeA = g.NodeA[i]
+					nodeSetter.NodeB = g.NodeA[j]
+					g.NodeSets = append(g.NodeSets, nodeSetter)
+					// invert
+					nodeSetter.NodeA = g.NodeA[j]
+					nodeSetter.NodeB = g.NodeA[i]
 					g.NodeSets = append(g.NodeSets, nodeSetter)
 				}
 			}
 		}
 	} else {
-		return nil, errors.New("CreateUndirectedVertexesPair: can not create pair")
+		return nil, errors.New("CreateUndirectedNodePair: can not create pair")
 	}
 	return g.NodeSets, nil
 }
@@ -69,10 +74,19 @@ func (g *NewGraph) CreateUndirectedVertexesPair() ([]NodeSet, error) {
 func (g *NewGraph) CreateUndirectedEdge() ([]NodeSet, error) {
 	nodeSetter := NodeSet{}
 	if len(g.NodeA) > 1 && len(g.NodeB) > 1 {
+		// noramal
 		for i := range g.NodeA {
 			for j := range g.NodeB {
-				nodeSetter.VertexA = g.NodeA[i]
-				nodeSetter.VertexB = g.NodeB[j]
+				nodeSetter.NodeA = g.NodeA[i]
+				nodeSetter.NodeB = g.NodeB[j]
+				g.NodeSets = append(g.NodeSets, nodeSetter)
+			}
+		}
+		// invert
+		for i := range g.NodeB {
+			for j := range g.NodeA {
+				nodeSetter.NodeA = g.NodeB[i]
+				nodeSetter.NodeB = g.NodeA[j]
 				g.NodeSets = append(g.NodeSets, nodeSetter)
 			}
 		}
@@ -82,10 +96,14 @@ func (g *NewGraph) CreateUndirectedEdge() ([]NodeSet, error) {
 	return g.NodeSets, nil
 }
 
-func ShowUndirectedGraph(g UndirectedGraph) {
-	if _, err := g.CreateUndirectedVertexesPair(); err != nil {
+func ShowUndirectedGraphOfNodePair(g UndirectedGraph) {
+	if _, err := g.CreateUndirectedNodePair(); err != nil {
 		log.Fatal(err)
 	}
+	g.PrintGraph()
+}
+
+func ShowUndirectedGraphOfEdge(g UndirectedGraph) {
 	if _, err := g.CreateUndirectedEdge(); err != nil {
 		log.Fatal(err)
 	}
@@ -97,24 +115,25 @@ func ShowUndirectedGraph(g UndirectedGraph) {
 // region DirectedGraph
 type DirectedGraph interface {
 	PrintGraph()
-	CreateDirectedVertexesPair() ([]NodeSet, error)
+	CreateDirectedNodePair() ([]NodeSet, error)
 	CreateDirectedEdge() ([]NodeSet, error)
 }
 
-func (g *NewGraph) CreateDirectedVertexesPair() ([]NodeSet, error) {
+func (g *NewGraph) CreateDirectedNodePair() ([]NodeSet, error) {
 	nodeSetter := NodeSet{}
 	if len(g.NodeA) > 1 {
 		for i := range g.NodeA {
 			for j := i; j < len(g.NodeA); j++ {
 				if j != i {
-					nodeSetter.VertexA = g.NodeA[i]
-					nodeSetter.VertexB = g.NodeA[j]
+					// noraml
+					nodeSetter.NodeA = g.NodeA[i]
+					nodeSetter.NodeB = g.NodeA[j]
 					g.NodeSets = append(g.NodeSets, nodeSetter)
 				}
 			}
 		}
 	} else {
-		return nil, errors.New("CreateDirectedVertexesPair: can not create pair")
+		return nil, errors.New("CreateDirectedNodePair: can not create pair")
 	}
 	return g.NodeSets, nil
 }
@@ -122,10 +141,11 @@ func (g *NewGraph) CreateDirectedVertexesPair() ([]NodeSet, error) {
 func (g *NewGraph) CreateDirectedEdge() ([]NodeSet, error) {
 	nodeSetter := NodeSet{}
 	if len(g.NodeA) > 1 && len(g.NodeB) > 1 {
+		// noramal
 		for i := range g.NodeA {
 			for j := range g.NodeB {
-				nodeSetter.VertexA = g.NodeA[i]
-				nodeSetter.VertexB = g.NodeB[j]
+				nodeSetter.NodeA = g.NodeA[i]
+				nodeSetter.NodeB = g.NodeB[j]
 				g.NodeSets = append(g.NodeSets, nodeSetter)
 			}
 		}
@@ -135,10 +155,14 @@ func (g *NewGraph) CreateDirectedEdge() ([]NodeSet, error) {
 	return g.NodeSets, nil
 }
 
-func ShowDirectedGraph(g DirectedGraph) {
-	if _, err := g.CreateDirectedVertexesPair(); err != nil {
+func ShowDirectedGraphOfNodePair(g DirectedGraph) {
+	if _, err := g.CreateDirectedNodePair(); err != nil {
 		log.Fatal(err)
 	}
+	g.PrintGraph()
+}
+
+func ShowDirectedGraphOfEdge(g DirectedGraph) {
 	if _, err := g.CreateDirectedEdge(); err != nil {
 		log.Fatal(err)
 	}
